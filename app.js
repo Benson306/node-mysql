@@ -83,10 +83,19 @@ app.get('/deletepost/:id', (req, res)=>{
     let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
     let query = db.query(sql, (err, result)=>{
         if(err) throw err;
-        res.send(result);
+        res.send("Post deleted");
     })
 })
 
+// Update Post
+app.get('/updatepost/:id', (req, res)=>{
+    let newTitle = 'Post one';
+    let sql = `UPDATE posts SET title = '${newTitle}' WHERE id = ${req.params.id}`;
+    let query = db.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.send("Post Updated");
+    })
+})
 
 app.listen(3000, ()=>{
     console.log('Server started on port 3000')
