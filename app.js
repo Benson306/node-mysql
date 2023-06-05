@@ -64,11 +64,28 @@ app.get('/getposts', (req, res) =>{
     let sql = "SELECT * FROM posts";
     let query = db.query(sql, (err, result)=>{
         if(err) throw err;
-
         res.send(result);
     })
 })
 
+// Select single post
+app.get('/getposts/:id', (req, res) =>{
+    let sql = `SELECT * FROM posts WHERE id = ${req. params.id}`;
+    let query = db.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+
+// DELETE posts
+app.get('/deletepost/:id', (req, res)=>{
+    let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
+    let query = db.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+})
 
 
 app.listen(3000, ()=>{
