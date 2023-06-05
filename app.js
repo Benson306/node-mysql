@@ -59,6 +59,16 @@ app.get('/addpost', (req, res)=>{
     })
 })
 
+// Select POSTS
+app.get('/getposts', (req, res) =>{
+    let sql = "SELECT * FROM posts";
+    let query = db.query(sql, (err, result)=>{
+        if(err) throw err;
+
+        res.send(result);
+    })
+})
+
 
 
 app.listen(3000, ()=>{
