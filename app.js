@@ -28,7 +28,18 @@ app.get('/createdb', (req, res) => {
     db.query(sql, (err, result) =>{
         if(err) throw err;
         res.send("Database Created");
-        console.log(result)
+        //console.log(result)
+    })
+})
+
+// Create a Table
+app.get('/createpoststable', (req, res)=>{
+    let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id) )';
+
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        //console.log(result);
+        res.send("Posts Table Created");
     })
 })
 
