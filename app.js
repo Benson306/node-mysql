@@ -32,6 +32,7 @@ app.get('/createdb', (req, res) => {
     })
 })
 
+
 // Create a Table
 app.get('/createpoststable', (req, res)=>{
     let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id) )';
@@ -43,7 +44,8 @@ app.get('/createpoststable', (req, res)=>{
     })
 })
 
-// Insert post 1
+
+// Insert post
 app.get('/addpost', (req, res)=>{
     let post  ={
         title: 'Post three',
@@ -59,6 +61,7 @@ app.get('/addpost', (req, res)=>{
     })
 })
 
+
 // Select POSTS
 app.get('/getposts', (req, res) =>{
     let sql = "SELECT * FROM posts";
@@ -67,6 +70,7 @@ app.get('/getposts', (req, res) =>{
         res.send(result);
     })
 })
+
 
 // Select single post
 app.get('/getposts/:id', (req, res) =>{
@@ -78,15 +82,6 @@ app.get('/getposts/:id', (req, res) =>{
 })
 
 
-// DELETE posts
-app.get('/deletepost/:id', (req, res)=>{
-    let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
-    let query = db.query(sql, (err, result)=>{
-        if(err) throw err;
-        res.send("Post deleted");
-    })
-})
-
 // Update Post
 app.get('/updatepost/:id', (req, res)=>{
     let newTitle = 'Post one';
@@ -96,6 +91,17 @@ app.get('/updatepost/:id', (req, res)=>{
         res.send("Post Updated");
     })
 })
+
+// DELETE posts
+app.get('/deletepost/:id', (req, res)=>{
+    let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
+    let query = db.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.send("Post deleted");
+    })
+})
+
+
 
 app.listen(3000, ()=>{
     console.log('Server started on port 3000')
